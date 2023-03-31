@@ -1,17 +1,9 @@
 import React, { useState } from "react";
 import Confirmation from "./confirmation";
 import Modal from "../UI/modal";
+import RoleOptions from "../helpers/role-options";
 
 import styles from "./registration-form.module.css";
-
-const roles = [
-  "Administrator",
-  "Dyrektor",
-  "Inspektor",
-  "Kierownik",
-  "Księgowy",
-  "Pełnomocnik",
-];
 
 const RegistrationForm = () => {
   const [enteredEmail, setEnteredEmail] = useState("");
@@ -97,14 +89,7 @@ const RegistrationForm = () => {
               onChange={(event) => setSelectedRole(event.target.value)}
               required
             >
-              <option disabled hidden>
-                Select your role
-              </option>
-              {roles.map((role) => (
-                <option value={role.toLowerCase()} key={role.toLowerCase()}>
-                  {role}
-                </option>
-              ))}
+              <RoleOptions />
             </select>
           </div>
           <div className={styles.actions}>
@@ -121,7 +106,7 @@ const RegistrationForm = () => {
       {isConfirming && (
         <Modal>
           <Confirmation
-            getUserData={confirmHandler}
+            onConfirm={confirmHandler}
             onCancel={onCancel}
             onSubmit={submitHandler}
           />

@@ -1,7 +1,7 @@
 import React from "react";
 
 const Confirmation = (props) => {
-  const userData = props.getUserData();
+  const userData = props.onConfirm();
   return (
     <div>
       <h2>Confirmation</h2>

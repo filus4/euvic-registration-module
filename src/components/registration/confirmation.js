@@ -1,28 +1,34 @@
 import React from "react";
 
+import styles from "./confirmation.module.css";
+
 const Confirmation = (props) => {
   const userData = props.onConfirm();
   return (
-    <div>
+    <div className={styles.container}>
       <h2>Confirmation</h2>
       <div>
-        <p>{userData.email}</p>
+        <p>Email: {userData.email}</p>
       </div>
       <div>
-        <p>{userData.password}</p>
+        <p>Password: {userData.password}</p>
       </div>
       <div>
-        <p>{userData.nip}</p>
+        <p>NIP: {userData.nip}</p>
       </div>
       <div>
-        <p>{userData.phoneNumber}</p>
+        <p>Phone Number: {userData.phoneNumber}</p>
       </div>
       <div>
-        <p>{userData.role}</p>
+        <p>Role: {userData.role}</p>
       </div>
-      <div>
-        <button onClick={props.onCancel}>Return</button>
-        <button onClick={props.onSubmit}>Register</button>
+      <div className={styles.actions}>
+        <button className={styles.return} onClick={props.onCancel}>
+          Return
+        </button>
+        <button className={styles.submit} onClick={props.onSubmit}>
+          Register
+        </button>
       </div>
     </div>
   );

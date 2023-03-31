@@ -1,7 +1,12 @@
-import "./App.css";
+import { Fragment } from "react";
+import RegistrationForm from "./components/registration/registration-form";
 
 function App() {
-  return <h1>Main Page</h1>;
+  return (
+    <Fragment>
+      <RegistrationForm />
+    </Fragment>
+  );
 }
 
 export default App;

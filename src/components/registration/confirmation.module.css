@@ -1,0 +1,49 @@
+.container h2 {
+  text-align: center;
+  margin: 0;
+}
+
+.container p {
+  border-bottom: 2px solid #ccc;
+  padding: 0 0.5rem 0.6rem;
+}
+
+.container button {
+  font: inherit;
+  cursor: pointer;
+  border-radius: 25px;
+  padding: 0.5rem 2rem;
+  width: 30%;
+}
+
+.submit {
+  border: 1px solid #ffb703;
+  background-color: #ffb703;
+  color: white;
+}
+
+.submit:hover,
+.submit:active {
+  background-color: #fff;
+  border: 1px solid #ffb703;
+  color: #fb8500;
+}
+
+.return {
+  border: 1px solid #ffb703;
+  background-color: #fff;
+  color: #fb8500;
+}
+
+.return:hover,
+.return:active {
+  background-color: #ffb703;
+  border: 1px solid #fbb703;
+  color: white;
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+}

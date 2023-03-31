@@ -64,8 +64,9 @@
 
 .actions .submit:hover,
 .actions .submit:active {
-  background-color: #fb8500;
-  border: 1px solid #fb8500;
+  background-color: #fff;
+  border: 1px solid #ffb703;
+  color: #ffb703;
 }
 
 .invalid label {

@@ -42,6 +42,11 @@
   border-bottom-color: #4591b4;
 }
 
+.control input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  display: none;
+}
+
 .actions {
   display: flex;
   justify-content: center;
@@ -69,11 +74,6 @@
   color: #ffb703;
 }
 
-.invalid label {
-  color: #ca3e51;
-}
-
 .invalid input {
   border-color: #aa0b20;
-  background-color: #ffeff1;
 }

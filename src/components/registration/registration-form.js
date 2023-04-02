@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Confirmation from "./confirmation";
 import Modal from "../UI/modal";
 import RoleOptions from "../helpers/role-options";
+import Notification from "./notification";
 import * as val from "../../validations/registration-validation";
 
 import styles from "./registration-form.module.css";
@@ -14,6 +15,7 @@ const RegistrationForm = () => {
   const [enteredPhoneNumber, setEnteredPhoneNumber] = useState("");
   const [selectedRole, setSelectedRole] = useState("Select your role");
   const [isConfirming, setIsConfirming] = useState(false);
+  const [isNotification, setIsNotification] = useState(false);
 
   const [emailError, setEmailError] = useState(false);
   const [passwordError, setPasswordError] = useState(false);
@@ -21,12 +23,6 @@ const RegistrationForm = () => {
   const [nipError, setNipError] = useState(false);
   const [phoneNumberError, setPhoneNumberError] = useState(false);
   const [selectedRoleError, setSelectedRoleError] = useState(false);
-
-  const submitHandler = (event) => {
-    event.preventDefault();
-
-    console.log();
-  };
 
   const emailBlurHandler = async () => {
     if (!(await val.checkEmail(enteredEmail))) {
@@ -120,6 +116,10 @@ const RegistrationForm = () => {
     return true;
   };
 
+  const cancelHandler = () => {
+    setIsConfirming(false);
+  };
+
   const confirmHandler = () => {
     const okay = checkValidity();
     if (!okay) {
@@ -134,6 +134,18 @@ const RegistrationForm = () => {
       role: selectedRole,
     };
     return userData;
+  };
+
+  const submitHandler = (event) => {
+    event.preventDefault();
+
+    setIsNotification(true);
+    setEnteredEmail("");
+    setEnteredPassword("");
+    setReEnteredPassword("");
+    setEnteredNIP("");
+    setEnteredPhoneNumber("");
+    setSelectedRole("Select your role");
   };
 
   return (
@@ -223,7 +235,7 @@ const RegistrationForm = () => {
           <div className={styles.actions}>
             <button
               className={styles.submit}
-              onClick={checkValidity}
+              onClick={confirmHandler}
               type="button"
             >
               Register
@@ -232,12 +244,24 @@ const RegistrationForm = () => {
         </form>
       </div>
       {isConfirming && (
-        <Modal onCancel={() => setIsConfirming(false)}>
-          <Confirmation
-            onConfirm={confirmHandler}
-            onCancel={() => setIsConfirming(false)}
-            onSubmit={submitHandler}
-          />
+        <Modal onCancel={cancelHandler}>
+          {!isNotification && (
+            <Confirmation
+              onConfirm={confirmHandler}
+              onCancel={cancelHandler}
+              onSubmit={submitHandler}
+            />
+          )}
+          {isNotification && (
+            <Notification
+              message={
+                "Registration was successful. Unfortunately the API is currently unavailable, please try again later."
+              }
+              onCancel={() => {
+                return [setIsNotification(false), cancelHandler()];
+              }}
+            />
+          )}
         </Modal>
       )}
     </div>

@@ -63,6 +63,14 @@ const RegistrationForm = () => {
     }
   };
 
+  const roleBlurHandler = () => {
+    if (selectedRole === "Select your role") {
+      setSelectedRoleError(true);
+    } else {
+      setSelectedRoleError(false);
+    }
+  };
+
   const phoneNumberBlurHandler = async () => {
     if (
       enteredPhoneNumber !== "" &&
@@ -107,6 +115,7 @@ const RegistrationForm = () => {
       setSelectedRoleError(true);
       return false;
     }
+
     setIsConfirming(true);
     return true;
   };
@@ -204,6 +213,7 @@ const RegistrationForm = () => {
           >
             <select
               value={selectedRole}
+              onBlur={roleBlurHandler}
               onChange={(event) => setSelectedRole(event.target.value)}
               required
             >

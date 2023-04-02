@@ -1,0 +1,25 @@
+.box {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: right;
+  align-items: center;
+}
+
+.box button {
+  font: inherit;
+  cursor: pointer;
+  border-radius: 25px;
+  padding: 0.5rem 2rem;
+  width: 100%;
+  border: 1px solid #ffb703;
+  background-color: #ffb703;
+  color: white;
+}
+
+.box button:hover,
+.box button:active {
+  background-color: #fff;
+  border: 1px solid #ffb703;
+  color: #ffb703;
+}

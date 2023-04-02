@@ -59,14 +59,6 @@ const RegistrationForm = () => {
     }
   };
 
-  const roleBlurHandler = () => {
-    if (selectedRole === "Select your role") {
-      setSelectedRoleError(true);
-    } else {
-      setSelectedRoleError(false);
-    }
-  };
-
   const phoneNumberBlurHandler = async () => {
     if (
       enteredPhoneNumber !== "" &&
@@ -75,6 +67,14 @@ const RegistrationForm = () => {
       setPhoneNumberError(true);
     } else {
       setPhoneNumberError(false);
+    }
+  };
+
+  const roleBlurHandler = () => {
+    if (selectedRole === "Select your role") {
+      setSelectedRoleError(true);
+    } else {
+      setSelectedRoleError(false);
     }
   };
 
@@ -164,6 +164,7 @@ const RegistrationForm = () => {
               onChange={(event) => setEnteredEmail(event.target.value)}
               required
             />
+            {emailError && <p>Please enter a valid email.</p>}
           </div>
           <div
             className={`${styles.control} ${
@@ -178,6 +179,7 @@ const RegistrationForm = () => {
               onChange={(event) => setEnteredPassword(event.target.value)}
               required
             />
+            {passwordError && <p>Please enter a valid password.</p>}
           </div>
           <div
             className={`${styles.control} ${
@@ -192,6 +194,7 @@ const RegistrationForm = () => {
               onChange={(event) => setReEnteredPassword(event.target.value)}
               required
             />
+            {rePasswordError && <p>Please re-enter your password.</p>}
           </div>
           <div
             className={`${styles.control} ${nipError ? styles.invalid : ""}`}
@@ -204,6 +207,7 @@ const RegistrationForm = () => {
               onChange={(event) => setEnteredNIP(event.target.value)}
               required
             />
+            {nipError && <p>Please enter a valid NIP number.</p>}
           </div>
           <div
             className={`${styles.control} ${
@@ -217,6 +221,7 @@ const RegistrationForm = () => {
               value={enteredPhoneNumber}
               onChange={(event) => setEnteredPhoneNumber(event.target.value)}
             />
+            {phoneNumberError && <p>Please enter a valid phone number.</p>}
           </div>
           <div
             className={`${styles.control} ${
@@ -226,11 +231,17 @@ const RegistrationForm = () => {
             <select
               value={selectedRole}
               onBlur={roleBlurHandler}
-              onChange={(event) => setSelectedRole(event.target.value)}
+              onChange={(event) => {
+                return [
+                  setSelectedRole(event.target.value),
+                  setSelectedRoleError(false),
+                ];
+              }}
               required
             >
               <RoleOptions />
             </select>
+            {selectedRoleError && <p>Please select your role.</p>}
           </div>
           <div className={styles.actions}>
             <button
@@ -255,7 +266,7 @@ const RegistrationForm = () => {
           {isNotification && (
             <Notification
               message={
-                "Registration was successful. Unfortunately the API is currently unavailable, please try again later."
+                "Unfortunately the API is currently unavailable, please try again later."
               }
               onCancel={() => {
                 return [setIsNotification(false), cancelHandler()];

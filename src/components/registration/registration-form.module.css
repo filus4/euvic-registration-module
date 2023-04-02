@@ -48,6 +48,10 @@ input::-webkit-inner-spin-button {
   display: none;
 }
 
+.control input[type="number"] {
+  -moz-appearance: textfield;
+}
+
 .actions {
   display: flex;
   justify-content: center;

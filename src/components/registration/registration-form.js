@@ -6,6 +6,7 @@ import Notification from "./notification";
 import * as val from "../../validations/registration-validation";
 
 import styles from "./registration-form.module.css";
+import FormInput from "./form-input";
 
 const RegistrationForm = () => {
   const [enteredEmail, setEnteredEmail] = useState("");
@@ -153,76 +154,64 @@ const RegistrationForm = () => {
       <div className={styles.box}>
         <h2>Create an account</h2>
         <form className={styles.form} onSubmit={submitHandler}>
-          <div
-            className={`${styles.control} ${emailError ? styles.invalid : ""}`}
-          >
-            <input
-              type="email"
-              onBlur={emailBlurHandler}
-              placeholder="Email address"
-              value={enteredEmail}
-              onChange={(event) => setEnteredEmail(event.target.value)}
-              required
-            />
-            {emailError && <p>Please enter a valid email.</p>}
-          </div>
-          <div
-            className={`${styles.control} ${
-              passwordError ? styles.invalid : ""
-            }`}
-          >
-            <input
-              type="password"
-              onBlur={passwordBlurHandler}
-              placeholder="Password"
-              value={enteredPassword}
-              onChange={(event) => setEnteredPassword(event.target.value)}
-              required
-            />
-            {passwordError && <p>Please enter a valid password.</p>}
-          </div>
-          <div
-            className={`${styles.control} ${
+          <FormInput
+            styles={`${styles.control} ${emailError ? styles.invalid : ""}`}
+            type="email"
+            onBlur={emailBlurHandler}
+            placeholder="Email address"
+            value={enteredEmail}
+            onChange={(event) => setEnteredEmail(event.target.value)}
+            error={emailError}
+            errorMessage="Please enter a valid email."
+            required
+          />
+          <FormInput
+            styles={`${styles.control} ${passwordError ? styles.invalid : ""}`}
+            type="password"
+            onBlur={passwordBlurHandler}
+            placeholder="Password"
+            value={enteredPassword}
+            onChange={(event) => setEnteredPassword(event.target.value)}
+            error={passwordError}
+            errorMessage="Please entere a valid password."
+            required
+          />
+          <FormInput
+            styles={`${styles.control} ${
               rePasswordError ? styles.invalid : ""
             }`}
-          >
-            <input
-              type="password"
-              onBlur={rePasswordBlurHandler}
-              placeholder="Re-enter password"
-              value={reEnteredPassword}
-              onChange={(event) => setReEnteredPassword(event.target.value)}
-              required
-            />
-            {rePasswordError && <p>Please re-enter your password.</p>}
-          </div>
-          <div
-            className={`${styles.control} ${nipError ? styles.invalid : ""}`}
-          >
-            <input
-              type="text"
-              onBlur={nipBlurHandler}
-              placeholder="NIP"
-              value={enteredNIP}
-              onChange={(event) => setEnteredNIP(event.target.value)}
-              required
-            />
-            {nipError && <p>Please enter a valid NIP number.</p>}
-          </div>
-          <div
-            className={`${styles.control} ${
+            type="password"
+            onBlur={rePasswordBlurHandler}
+            placeholder="Re-enter password"
+            value={reEnteredPassword}
+            onChange={(event) => setReEnteredPassword(event.target.value)}
+            error={rePasswordError}
+            errorMessage="Please re-enter your password."
+            required
+          />
+          <FormInput
+            styles={`${styles.control} ${nipError ? styles.invalid : ""}`}
+            type="text"
+            onBlur={nipBlurHandler}
+            placeholder="NIP"
+            value={enteredNIP}
+            onChange={(event) => setEnteredNIP(event.target.value)}
+            error={nipError}
+            errorMessage="Please enter a valid NIP number."
+            required
+          />
+          <FormInput
+            styles={`${styles.control} ${
               phoneNumberError ? styles.invalid : ""
             }`}
-          >
-            <input
-              type="number"
-              onBlur={phoneNumberBlurHandler}
-              placeholder="Phone number (optional)"
-              value={enteredPhoneNumber}
-              onChange={(event) => setEnteredPhoneNumber(event.target.value)}
-            />
-            {phoneNumberError && <p>Please enter a valid phone number.</p>}
-          </div>
+            type="number"
+            onBlur={phoneNumberBlurHandler}
+            placeholder="Phone number (optional)"
+            value={enteredPhoneNumber}
+            onChange={(event) => setEnteredPhoneNumber(event.target.value)}
+            error={phoneNumberError}
+            errorMessage="Please enter a valid phone number."
+          />
           <div
             className={`${styles.control} ${
               selectedRoleError ? styles.invalid : ""

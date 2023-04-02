@@ -74,6 +74,7 @@ input::-webkit-inner-spin-button {
   color: #ffb703;
 }
 
-.invalid input {
+.invalid input,
+.invalid select {
   border-color: #aa0b20;
 }

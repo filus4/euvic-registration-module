@@ -11,7 +11,8 @@
     "react-scripts": "^5.0.1",
     "validate-polish": "^2.1.40",
     "web-vitals": "^2.1.4",
-    "yup": "^1.0.2"
+    "yup": "^1.0.2",
+    "yup-password": "^0.2.2"
   },
   "scripts": {
     "start": "react-scripts start",

@@ -1,12 +1,21 @@
 import * as yup from "yup";
+import YupPassword from "yup-password";
 import { validatePolish } from "validate-polish";
 
+YupPassword(yup);
 const emailSchema = yup.object().shape({
   email: yup.string().email().required(),
 });
 
 const passwordSchema = yup.object().shape({
-  password: yup.string().required().min(6).max(15),
+  password: yup
+    .string()
+    .required()
+    .min(8)
+    .minLowercase(1)
+    .minUppercase(1)
+    .minNumbers(1)
+    .minSymbols(1),
 });
 
 const phoneRegExp =

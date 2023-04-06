@@ -173,7 +173,7 @@ const RegistrationForm = () => {
             value={enteredPassword}
             onChange={(event) => setEnteredPassword(event.target.value)}
             error={passwordError}
-            errorMessage="Please entere a valid password."
+            errorMessage="Please enter a valid password."
             required
           />
           <FormInput
